@@ -11,7 +11,8 @@ class ProfileBodyView extends StatefulWidget {
 }
 
 class _ProfileBodyViewState extends State<ProfileBodyView> {
-  final bool currentTap = false;
+  int currentTap = 0;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,24 +26,27 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                 height: MediaQuery.of(context).size.height * 0.35,
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.arrow_back_rounded,
+                    Container(
+                      color: Theme.of(context).colorScheme.surface,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.arrow_back_rounded,
+                                color: Colors.amberAccent,
+                              )),
+                          Text(
+                            'Profile',
+                            style: TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
                               color: Colors.amberAccent,
-                            )),
-                        Text(
-                          'Profile',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amberAccent,
-                          ),
-                        )
-                      ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -98,9 +102,10 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                           CustomButton(
                             text: 'Edit Profile',
                             icon: Icons.edit,
-                            onTap: () {
-                              
-                            },
+                            color: Theme.of(context).colorScheme.surface,
+                            onTap: () => setState(() {
+                              currentTap = 1;
+                            }),
                           ),
                         ],
                       ),
@@ -122,13 +127,22 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                     CustomButton(
                       icon: Icons.list,
                       text: "My Favorite Movies",
-                      onTap: () {},
+                      color: currentTap == 0
+                          ? Theme.of(context).colorScheme.secondary
+                          : Theme.of(context).colorScheme.surface,
+                      onTap: () => setState(() {
+                        currentTap = 0;
+                      }),
                     ),
                     CustomButton(
-                      icon: Icons.list,
-                      text: "My Watchlist",
-                      onTap: () {},
-                    ),
+                        icon: Icons.list,
+                        text: "My Watchlist",
+                        color: currentTap == 2
+                            ? Theme.of(context).colorScheme.secondary
+                            : Theme.of(context).colorScheme.surface,
+                        onTap: () => setState(() {
+                              currentTap = 2;
+                            })),
                   ],
                 ),
               ),
