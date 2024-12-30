@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movieapp/features/home/data/datasource/remouteDataSource/api_endpoints.dart';
-import 'package:movieapp/features/home/data/models/movie_model.dart';
 import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/domain/repo/repo.dart';
-
 
 class TopRatedMoviesHomeRepoIm extends TopRatedMoviesHomeRepo {
   final ApiEndpoints apiEndpoints;

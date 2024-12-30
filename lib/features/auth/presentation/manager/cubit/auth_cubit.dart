@@ -9,7 +9,6 @@ import 'package:movieapp/features/auth/domain/usecases/login_usecase.dart';
 import 'package:movieapp/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:movieapp/features/auth/domain/usecases/register_usecase.dart';
 import 'package:movieapp/features/auth/presentation/manager/cubit/auth_state.dart';
-import 'package:movieapp/features/home/presentation/screens/home.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository authRepository;

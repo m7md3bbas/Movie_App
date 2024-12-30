@@ -7,10 +7,10 @@ import 'package:movieapp/features/home/presentation/screens/widgets/Custom_movie
 class GenresLoadedWidget extends StatelessWidget {
   const GenresLoadedWidget({
     super.key,
-    required this.generalMovies,
+    required this.genresMovies,
   });
 
-  final List<MovieEntity> generalMovies;
+  final List<MovieEntity> genresMovies;
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +21,17 @@ class GenresLoadedWidget extends StatelessWidget {
           crossAxisCount: 2,
           childAspectRatio: 0.7,
         ),
-        itemCount: generalMovies.length,
+        itemCount: genresMovies.length,
         itemBuilder: (context, index) {
           return CustomMovieImage(
               ontap: () {
                 Get.to(() => MovieDetails(
                       currentIndex: index,
-                      movies: generalMovies,
+                      movies: genresMovies,
                     ));
               },
-              image: generalMovies[index].orginalImage,
-              rating: generalMovies[index].rating);
+              image: genresMovies[index].orginalImage,
+              rating: genresMovies[index].rating);
         });
   }
 }

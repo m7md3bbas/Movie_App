@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:movieapp/features/home/data/models/movie_model.dart';
 import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/domain/usecases/genres_movies.dart';
 
@@ -17,7 +16,7 @@ class GenricCubit extends Cubit<GenricState> {
         (r) => emit(GenresLoaded(movies: r)));
   }
 
-  void selectGenre(String genre) {
+  void selectGenre(dynamic genre) {
     emit(Genre(message: genre));
   }
 }

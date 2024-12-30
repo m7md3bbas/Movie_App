@@ -20,7 +20,10 @@ class GenreModelView extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is GenresLoaded) {
-          return GenresLoadedWidget(generalMovies: state.movies,);
+          return GenresLoadedWidget(
+            genresMovies: state.movies,
+           
+          );
         } else if (state is GenresLoading) {
           return const GenresLoadingWidget();
         }

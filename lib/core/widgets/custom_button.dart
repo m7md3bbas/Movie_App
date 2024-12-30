@@ -35,8 +35,12 @@ class CustomButton extends StatelessWidget {
             isIcon
                 ? Icon(
                     icon,
+                    color: Colors.amberAccent,
                   )
                 : Container(),
+            const SizedBox(
+              width: 10,
+            ),
             Text(
               text,
               style: TextStyle(color: Colors.amberAccent, fontSize: 16),

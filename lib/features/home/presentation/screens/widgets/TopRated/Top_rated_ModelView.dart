@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:movieapp/features/home/data/models/movie_model.dart';
 import 'package:movieapp/core/widgets/get_snacbars.dart';
 import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/presentation/manager/cubit/home_cubit.dart';

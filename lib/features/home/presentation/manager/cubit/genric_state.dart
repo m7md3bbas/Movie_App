@@ -17,6 +17,6 @@ final class GenresError extends GenricState {
   GenresError({required this.message});
 }
 final class Genre extends GenricState {
-  final String message;
+  final dynamic message;
   Genre({required this.message});
 }

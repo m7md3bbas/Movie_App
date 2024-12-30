@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:movieapp/features/home/data/models/movie_model.dart';
 import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 
 
