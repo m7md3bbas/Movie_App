@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/domain/usecases/genres_movies.dart';
 
 part 'genric_state.dart';

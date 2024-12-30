@@ -18,12 +18,12 @@ final class homeError extends HomeState {
 final class TopRatedMoviesLoading extends HomeState {}
 
 final class moviesLoaded extends HomeState {
-  final List<MovieModel> movies;
+  final List<MovieEntity> movies;
   moviesLoaded(this.movies);
 }
 
 final class genresmoviesLoaded extends HomeState {
-  final List<MovieModel> movies;
+  final List<MovieEntity> movies;
   genresmoviesLoaded(this.movies);
 }
 

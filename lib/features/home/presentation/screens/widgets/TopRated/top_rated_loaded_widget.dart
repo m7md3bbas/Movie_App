@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/presentation/screens/movie_details.dart';
 import '../background_widget.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/custom_movie_image.dart';
 
 class TopRatedLoadedWidget extends StatelessWidget {
-  final List<MovieModel> movies;
+  final List<MovieEntity> movies;
   final int currentIndex;
   final ValueChanged<int> onPageChanged;
 

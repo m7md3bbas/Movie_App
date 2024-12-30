@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:movieapp/features/home/data/datasource/remouteDataSource/api_endpoints.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/domain/repo/repo.dart';
 
 
@@ -9,7 +10,7 @@ class TopRatedMoviesHomeRepoIm extends TopRatedMoviesHomeRepo {
 
   TopRatedMoviesHomeRepoIm({required this.apiEndpoints});
   @override
-  Future<Either<String, List<MovieModel>>> TopRatedMovies() async {
+  Future<Either<String, List<MovieEntity>>> TopRatedMovies() async {
     try {
       final response = await apiEndpoints.getTopRatedMovies();
       return Right(response);
@@ -22,7 +23,7 @@ class TopRatedMoviesHomeRepoIm extends TopRatedMoviesHomeRepo {
 class GeneresMoviesHomeRepoIm extends GeneresMoviesHomeRepo {
   final ApiEndpoints apiEndpoints;
   GeneresMoviesHomeRepoIm({required this.apiEndpoints});
-  Future<Either<String, List<MovieModel>>> GenresMovies(
+  Future<Either<String, List<MovieEntity>>> GenresMovies(
       {required String genres}) async {
     try {
       final response = await apiEndpoints.getGeneresMovies(genres: genres);

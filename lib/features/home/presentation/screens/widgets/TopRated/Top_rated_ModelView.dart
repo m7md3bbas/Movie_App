@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
 import 'package:movieapp/core/widgets/get_snacbars.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/TopRated/top_rated_loading_widget.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/TopRated/top_rated_loaded_widget.dart';
@@ -29,7 +30,7 @@ class TopRatedModelview extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is moviesLoaded) {
-          final List<MovieModel> topMovies = state.movies;
+          final List<MovieEntity> topMovies = state.movies;
           return SliverToBoxAdapter(
             child: TopRatedLoadedWidget(
               movies: topMovies,

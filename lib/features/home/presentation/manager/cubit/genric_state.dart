@@ -8,7 +8,7 @@ final class GenricInitial extends GenricState {}
 final class GenresLoading extends GenricState {}
 
 final class GenresLoaded extends GenricState {
-  final List<MovieModel> movies;
+  final List<MovieEntity> movies;
   GenresLoaded({required this.movies});
 }
 

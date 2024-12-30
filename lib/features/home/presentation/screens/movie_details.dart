@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/core/widgets/custom_button.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
@@ -10,7 +11,7 @@ class MovieDetails extends StatefulWidget {
     required this.movies,
     required this.currentIndex,
   });
-  final List<MovieModel> movies;
+  final List<MovieEntity> movies;
   final int currentIndex;
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
@@ -128,12 +129,21 @@ class _MovieDetailsState extends State<MovieDetails> {
               ],
             ),
             CustomButton(
-              width: MediaQuery.of(context).size.width * 0.80,
+              width: MediaQuery.of(context).size.width * 0.9,
+              isIcon: false,
               text: "Watch Now",
               color: Theme.of(context).colorScheme.secondary,
               onTap: () {},
             ),
-            
+            Row(
+              children: [
+                CustomButton(
+                  text: widget.movies[widget.currentIndex].runtime.toString(),
+                  isIcon: true,
+                  icon: Icons.timer,
+                )
+              ],
+            )
           ],
         ),
       ),

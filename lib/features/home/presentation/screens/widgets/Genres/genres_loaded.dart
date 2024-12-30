@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/presentation/screens/movie_details.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/Custom_movie_image.dart';
 
@@ -10,7 +10,7 @@ class GenresLoadedWidget extends StatelessWidget {
     required this.generalMovies,
   });
 
-  final List<MovieModel> generalMovies;
+  final List<MovieEntity> generalMovies;
 
   @override
   Widget build(BuildContext context) {

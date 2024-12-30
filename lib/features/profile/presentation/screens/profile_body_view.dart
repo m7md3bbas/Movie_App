@@ -103,6 +103,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           CustomButton(
+                            isIcon: true,
                             width: MediaQuery.of(context).size.width * 0.40,
                             text: 'Edit Profile',
                             icon: Icons.edit,
@@ -130,6 +131,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                   children: [
                     Expanded(
                       child: CustomButton(
+                        isIcon: true,
                         width: MediaQuery.of(context).size.width * 0.40,
                         icon: Icons.list,
                         text: "My Favorite Movies",
@@ -143,6 +145,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                     ),
                     Expanded(
                       child: CustomButton(
+                        isIcon: true,
                           width: MediaQuery.of(context).size.width * 0.40,
                           icon: Icons.list,
                           text: "My Watchlist",
