@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movieapp/core/widgets/custom_button.dart';
 import 'package:movieapp/core/widgets/custom_fading.dart';
-import 'package:movieapp/features/profile/presentation/screens/widgets/custom_button.dart';
 import 'package:movieapp/features/profile/presentation/screens/widgets/custom_item.dart';
 
 class ProfileBodyView extends StatefulWidget {
@@ -32,7 +33,9 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Get.back();
+                              },
                               icon: Icon(
                                 Icons.arrow_back_rounded,
                                 color: Colors.amberAccent,
@@ -100,6 +103,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           CustomButton(
+                            width: MediaQuery.of(context).size.width * 0.40,
                             text: 'Edit Profile',
                             icon: Icons.edit,
                             color: Theme.of(context).colorScheme.surface,
@@ -116,7 +120,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: 50,
+                height: MediaQuery.of(context).size.height * 0.06,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.secondary,
@@ -124,25 +128,31 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    CustomButton(
-                      icon: Icons.list,
-                      text: "My Favorite Movies",
-                      color: currentTap == 0
-                          ? Theme.of(context).colorScheme.secondary
-                          : Theme.of(context).colorScheme.surface,
-                      onTap: () => setState(() {
-                        currentTap = 0;
-                      }),
-                    ),
-                    CustomButton(
+                    Expanded(
+                      child: CustomButton(
+                        width: MediaQuery.of(context).size.width * 0.40,
                         icon: Icons.list,
-                        text: "My Watchlist",
-                        color: currentTap == 2
+                        text: "My Favorite Movies",
+                        color: currentTap == 0
                             ? Theme.of(context).colorScheme.secondary
                             : Theme.of(context).colorScheme.surface,
                         onTap: () => setState(() {
-                              currentTap = 2;
-                            })),
+                          currentTap = 0;
+                        }),
+                      ),
+                    ),
+                    Expanded(
+                      child: CustomButton(
+                          width: MediaQuery.of(context).size.width * 0.40,
+                          icon: Icons.list,
+                          text: "My Watchlist",
+                          color: currentTap == 2
+                              ? Theme.of(context).colorScheme.secondary
+                              : Theme.of(context).colorScheme.surface,
+                          onTap: () => setState(() {
+                                currentTap = 2;
+                              })),
+                    ),
                   ],
                 ),
               ),

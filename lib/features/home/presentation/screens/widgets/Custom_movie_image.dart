@@ -1,48 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/features/home/presentation/screens/widgets/top_rated_widget.dart';
 
 class CustomMovieImage extends StatelessWidget {
   const CustomMovieImage(
-      {super.key, required this.image, required this.rating});
+      {super.key,
+      required this.image,
+      required this.rating,
+      required this.ontap});
   final String image;
   final num rating;
+  final VoidCallback? ontap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: Stack(children: [
-          Image.network(
-            image,
-            fit: BoxFit.cover,
-          ),
-          Positioned(
-            top: 10,
-            left: 10,
-            child: Container(
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: Colors.transparent.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Row(
-                spacing: 10,
-                children: [
-                  Text(
-                    rating.toString(),
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                  ),
-                ],
-              ),
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Stack(children: [
+            Image.network(
+              image,
+              fit: BoxFit.cover,
             ),
-          )
-        ]),
+            Positioned(
+              top: 10,
+              left: 10,
+              child: TopRatedWidget(rating: rating),
+            )
+          ]),
+        ),
       ),
     );
   }

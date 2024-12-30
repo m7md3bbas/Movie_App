@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/Genres/genre_model_view.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/TopRated/Top_rated_ModelView.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/middle_widget.dart';
+import 'package:movieapp/features/profile/presentation/screens/profile.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody(
@@ -11,9 +12,7 @@ class HomeViewBody extends StatelessWidget {
   final void Function(int) onIndexChanged;
   static final List<Widget> pages = [
     IconButton(
-      onPressed: () {
-        Get.offAllNamed("/home");
-      },
+      onPressed: () {},
       icon: Icon(
         Icons.home,
         color: Colors.amber,
@@ -23,25 +22,24 @@ class HomeViewBody extends StatelessWidget {
       onPressed: () {
         Get.toNamed("/search");
       },
-      icon: Icon(Icons.search,color: Colors.amber),
+      icon: Icon(Icons.search, color: Colors.amber),
+    ),
+    IconButton(
+      onPressed: () {
+        Get.to((() => Profile()));
+      },
+      icon: Icon(Icons.person, color: Colors.amber),
     ),
     IconButton(
       onPressed: () {},
-      icon: Icon(Icons.person,color: Colors.amber),
-    ),
-    IconButton(
-      onPressed: () {},
-      icon: Icon(Icons.logout,color: Colors.amber),
-     
+      icon: Icon(Icons.logout, color: Colors.amber),
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-
       child: Stack(
-        
         children: [
           CustomScrollView(
             slivers: [

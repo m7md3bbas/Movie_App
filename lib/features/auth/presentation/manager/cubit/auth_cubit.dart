@@ -9,7 +9,7 @@ import 'package:movieapp/features/auth/domain/usecases/login_usecase.dart';
 import 'package:movieapp/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:movieapp/features/auth/domain/usecases/register_usecase.dart';
 import 'package:movieapp/features/auth/presentation/manager/cubit/auth_state.dart';
-import 'package:movieapp/features/profile/presentation/screens/profile.dart';
+import 'package:movieapp/features/home/presentation/screens/home.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository authRepository;
@@ -29,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
     _authStateSubscrition = authRepository.authStateChange.listen((user) {
       if (user != null) {
         emit(Authenticated(userEntity: user));
-        Get.to(()=>Profile());
+        Get.toNamed("/home");
       } else {
         emit(UnAuthenticated());
         Get.toNamed("/login");

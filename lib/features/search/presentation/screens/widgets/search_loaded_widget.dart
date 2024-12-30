@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:movieapp/features/home/data/models/movie_model.dart';
+import 'package:movieapp/features/home/presentation/screens/movie_details.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/Custom_movie_image.dart';
 
 class SearchLoadedWidget extends StatelessWidget {
@@ -28,7 +30,14 @@ class SearchLoadedWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               final movie = gotMovies[index];
               return CustomMovieImage(
-                  image: movie.orginalImage, rating: movie.rating);
+                  ontap: () {
+                    Get.to(() => MovieDetails(
+                      currentIndex: index,
+                          movies: gotMovies,
+                        ));
+                  },
+                  image: movie.orginalImage,
+                  rating: movie.rating);
             },
           );
   }
