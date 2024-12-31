@@ -32,7 +32,7 @@ class SearchLoadedWidget extends StatelessWidget {
               return CustomMovieImage(
                   ontap: () {
                     Get.to(() => MovieDetails(
-                      currentIndex: index,
+                          currentIndex: index,
                           movies: gotMovies,
                         ));
                   },
