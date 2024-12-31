@@ -6,19 +6,31 @@ import 'package:movieapp/features/home/domain/entities/movie_entity.dart';
 import 'package:movieapp/features/home/presentation/screens/widgets/Custom_movie_image.dart';
 
 class MovieDetails extends StatelessWidget {
-  const MovieDetails({
+   MovieDetails({
     super.key,
     required this.movies,
     required this.currentIndex,
   });
   final List<MovieEntity> movies;
   final int currentIndex;
+  List<MovieEntity> similarMovie = [];
+  final ValueNotifier<bool> currenttap = ValueNotifier(false);
 
-  static ValueNotifier<bool> currenttap = ValueNotifier(false);
+  List<MovieEntity> similar() {
+    final List<MovieEntity> movieList = movies
+        .where((movie) => movie.genres
+            .contains(movies[currentIndex].genres.map((e) => e).toList()[0]))
+        .toList();
+    similarMovie = movieList
+        .where((movie) => movie.id != movies[currentIndex].id)
+        .toList();
 
-  @override
+    return similarMovie;
+  }
+
   @override
   Widget build(BuildContext context) {
+    similar();
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
@@ -179,17 +191,28 @@ class MovieDetails extends StatelessWidget {
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     childAspectRatio: 0.7),
-                itemCount: 10,
+                itemCount: similarMovie.length,
                 itemBuilder: (context, index) {
-                  return CustomMovieImage(
-                      ontap: () {
-                        Get.to(() => MovieDetails(
-                              currentIndex: index,
-                              movies: movies,
-                            ));
-                      },
-                      image: movies[index].orginalImage,
-                      rating: movies[index].rating);
+                  return similarMovie.length == 0
+                      ? Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No Similar Movies",
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.amberAccent),
+                          ),
+                      )
+                      : CustomMovieImage(
+                          ontap: () {
+                            Get.to(() => MovieDetails(
+                                  currentIndex: index,
+                                  movies: movies,
+                                ));
+                          },
+                          image: similarMovie[index].orginalImage,
+                          rating: similarMovie[index].rating);
                 })
           ],
         ),
