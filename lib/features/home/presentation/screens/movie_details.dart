@@ -62,6 +62,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           slivers: [
             SliverToBoxAdapter(
               child: Column(
+                spacing: 10,
                 children: [
                   Stack(
                     children: [
