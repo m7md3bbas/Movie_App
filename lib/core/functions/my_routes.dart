@@ -1,12 +1,12 @@
+
 import 'package:get/get.dart';
-import 'package:movieapp/features/auth/presentation/manager/binding/auth_binding.dart';
-import 'package:movieapp/features/auth/presentation/screens/forgetPassword.dart';
-import 'package:movieapp/features/auth/presentation/screens/login.dart';
-import 'package:movieapp/features/auth/presentation/screens/reigster.dart';
-import 'package:movieapp/features/home/presentation/manager/binding/home_bindings.dart';
-import 'package:movieapp/features/home/presentation/screens/home.dart';
-import 'package:movieapp/features/search/presentation/manager/binding/search_binding.dart';
-import 'package:movieapp/features/search/presentation/screens/search.dart';
+import 'package:movieapp/presentation/Auth/manager/binding/auth_binding.dart';
+import 'package:movieapp/presentation/Auth/screens/forgetPassword.dart';
+import 'package:movieapp/presentation/Auth/screens/login.dart';
+import 'package:movieapp/presentation/Auth/screens/reigster.dart';
+import 'package:movieapp/presentation/Home/manager/binding/home_bindings.dart';
+import 'package:movieapp/presentation/MainPage/main_page.dart';
+import 'package:movieapp/presentation/Search/manager/binding/search_binding.dart';
 
 class MyRoutes {
   static List<GetPage<dynamic>> get myroutes {
@@ -22,15 +22,11 @@ class MyRoutes {
           page: () => ForgetPasswordPage(),
           binding: AuthBinding()),
       GetPage(
-          name: '/search',
-          page: () => Search(),
-          binding: SearchBinding(),
-          transition: Transition.cupertino),
-      GetPage(
-          name: '/home',
-          page: () => Home(),
-          binding: HomeBindings(),
-         ),
+        name: '/mainpage',
+        page: () => MainPageView(),
+        bindings: [HomeBindings(), SearchBinding(), AuthBinding()],
+        transition: Transition.cupertino,
+      ),
     ];
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:movieapp/features/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:movieapp/presentation/Auth/manager/cubit/auth_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:movieapp/bloc_observer.dart';
 import 'package:movieapp/core/functions/my_routes.dart';
 import 'package:movieapp/core/theme/theme_provider.dart';
-import 'package:movieapp/features/auth/presentation/manager/binding/auth_binding.dart';
+import 'package:movieapp/presentation/Auth/manager/binding/auth_binding.dart';
 import 'package:movieapp/splash_screen.dart';
 import 'package:movieapp/firebase_options.dart';
 import 'package:provider/provider.dart';
