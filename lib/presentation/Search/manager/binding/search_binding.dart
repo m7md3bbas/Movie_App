@@ -13,6 +13,7 @@ class SearchBinding extends Bindings {
     Get.lazyPut<MovieNameUsecase>(
       () => MovieNameUsecase(false, searchRepoim: Get.find<SearchRepoim>()),
     );
-    Get.lazyPut<SearchCubit>(() => SearchCubit(Get.find<MovieNameUsecase>()));
+    Get.lazyPut<SearchCubit>(() => SearchCubit(Get.find<MovieNameUsecase>())..movieName(name: 
+    ""));
   }
 }

@@ -12,10 +12,10 @@ class MyRoutes {
   static List<GetPage<dynamic>> get myroutes {
     return [
       GetPage(
-          name: '/login', page: () => const Login(), binding: AuthBinding()),
+          name: '/login', page: () =>  Login(), binding: AuthBinding()),
       GetPage(
           name: '/register',
-          page: () => const Register(),
+          page: () =>  Register(),
           binding: AuthBinding()),
       GetPage(
           name: '/forgetPassword',

@@ -83,9 +83,7 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                             text: 'Edit Profile',
                             icon: Icons.edit,
                             color: Theme.of(context).colorScheme.surface,
-                            onTap: () => setState(() {
-                              currentTap = 1;
-                            }),
+                            onTap: () {},
                           ),
                         ],
                       ),

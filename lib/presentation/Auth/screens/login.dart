@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -8,28 +6,20 @@ import 'package:movieapp/core/widgets/mybutton.dart';
 import 'package:movieapp/core/widgets/mytextfield.dart';
 import 'package:movieapp/presentation/Auth/manager/cubit/auth_cubit.dart';
 import 'package:movieapp/presentation/Auth/manager/cubit/auth_state.dart';
+import 'package:movieapp/presentation/Auth/screens/widgets/login/sginup.dart';
+import 'package:movieapp/presentation/Auth/screens/widgets/login/show_password.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Login extends StatelessWidget {
+  Login({super.key});
 
-  @override
-  State<Login> createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool isobsecured = true;
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
+  final ValueNotifier<bool> isObscuredNotifier = ValueNotifier<bool>(true);
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       body: BlocConsumer<AuthCubit, AuthState>(
@@ -43,79 +33,67 @@ class _LoginState extends State<Login> {
         builder: (context, state) {
           var cubit = Get.find<AuthCubit>();
           return SafeArea(
-              child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 20,
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                  ),
-                  Image.asset('assets/images/Logo.png'),
-                  Text(
-                    'Login',
-                    style: TextStyle(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.15,
+                    ),
+                    Image.asset('assets/images/Logo.png'),
+                    Text(
+                      'Login',
+                      style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary),
-                  ),
-                  MyTextField(
-                    prefixicon: Icon(Icons.email),
-                    obscure: false,
-                    type: 'Email',
-                    controller: emailController,
-                  ),
-                  MyTextField(
-                    prefixicon: Icon(Icons.lock),
-                    type: 'Password',
-                    controller: passwordController,
-                    obscure: isobsecured,
-                  ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: !isobsecured,
-                        onChanged: (value) =>
-                            setState(() => isobsecured = !isobsecured),
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                      Text('Show Password'),
-                      Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed('/forgetPassword');
-                        },
-                        child: Text(
-                          'Forgot Password?',
-                        ),
-                      )
-                    ],
-                  ),
-                  state is AuthLoading
-                      ? CircularProgressIndicator()
-                      : MyButton(name: 'Login', onPressed: () => login(cubit)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Don\'t have an account?'),
-                      TextButton(
-                          onPressed: () {
-                            Get.toNamed("/register");
-                          },
-                          child: Text('Sign up'))
-                    ],
-                  )
-                ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    ),
+                    MyTextField(
+                      prefixicon: Icon(Icons.email),
+                      obscure: false,
+                      type: 'Email',
+                      controller: emailController,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    ValueListenableBuilder<bool>(
+                      valueListenable: isObscuredNotifier,
+                      builder: (context, isObscured, child) {
+                        FocusScope.of(context).unfocus();
+                        return MyTextField(
+                          prefixicon: Icon(Icons.lock),
+                          type: 'Password',
+                          controller: passwordController,
+                          obscure: isObscured,
+                        );
+                      },
+                    ),
+                    ShowPasswordWidget(isObscuredNotifier: isObscuredNotifier),
+                    state is AuthLoading
+                        ? CircularProgressIndicator()
+                        : MyButton(
+                            name: 'Login',
+                            onPressed: () => _login(cubit, context),
+                          ),
+                    SginUpWidget(),
+                  ],
+                ),
               ),
             ),
-          ));
+          );
         },
       ),
     );
   }
 
-  void login(AuthCubit cubit) {
+  void _login(AuthCubit cubit, BuildContext context) {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
 
