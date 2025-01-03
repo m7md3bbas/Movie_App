@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/domain/Entities/movie_entity.dart';
-import 'package:movieapp/presentation/Home/screens/movie_details.dart';
+import 'package:movieapp/presentation/moviedetails/screens/movie_details.dart';
 import 'package:movieapp/presentation/Home/screens/widgets/Custom_movie_image.dart';
 import 'background_widget.dart';
 
@@ -10,7 +10,6 @@ class TopRatedLoadedWidget extends StatelessWidget {
   final List<MovieEntity> movies;
   final int currentIndex;
   final ValueChanged<int> onPageChanged;
-
   const TopRatedLoadedWidget({
     super.key,
     required this.movies,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieapp/domain/Entities/movie_entity.dart';
 import 'package:movieapp/presentation/MainPage/button_navigation_page.dart';
 import 'package:movieapp/presentation/Home/screens/home.dart';
 import 'package:movieapp/presentation/Profile/screens/profile.dart';
@@ -12,7 +13,6 @@ class MainPageView extends StatefulWidget {
 class _MainPageViewState extends State<MainPageView> {
   final PageController _pageController = PageController();
   int _currentIndex = 0;
-
   void _onPageChanged(int index) {
     setState(() {
       _currentIndex = index;
@@ -35,7 +35,7 @@ class _MainPageViewState extends State<MainPageView> {
           PageView(
             controller: _pageController,
             onPageChanged: _onPageChanged,
-            children: const [
+            children: [
               Home(),
               Search(),
               Profile(),

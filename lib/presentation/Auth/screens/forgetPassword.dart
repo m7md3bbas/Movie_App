@@ -28,7 +28,7 @@ class ForgetPasswordPage extends StatelessWidget {
           },
         ),
         title: Text(
-          "forgetPassword".tr,
+          "forgetPassword",
           style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       ),

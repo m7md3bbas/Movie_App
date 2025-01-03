@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/domain/Entities/movie_entity.dart';
-import 'package:movieapp/presentation/Home/screens/movie_details.dart';
+import 'package:movieapp/presentation/moviedetails/screens/movie_details.dart';
 import 'package:movieapp/presentation/Home/screens/widgets/Custom_movie_image.dart';
 
 class GenresLoadedWidget extends StatelessWidget {

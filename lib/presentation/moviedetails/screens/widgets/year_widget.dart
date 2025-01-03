@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movieapp/presentation/Home/screens/movie_details.dart';
+import 'package:movieapp/presentation/moviedetails/screens/movie_details.dart';
 
 class YearTextWidget extends StatelessWidget {
   const YearTextWidget({

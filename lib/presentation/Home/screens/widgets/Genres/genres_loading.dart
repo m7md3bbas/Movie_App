@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:movieapp/core/widgets/custom_fading.dart';
 
@@ -10,8 +9,7 @@ class GenresLoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisSpacing: 5,
           mainAxisSpacing: 5,
           crossAxisCount: 2,
@@ -21,8 +19,10 @@ class GenresLoadingWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return CustomFadingWidget(
               child: Container(
+                  decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
             color: Colors.grey,
-          ));
+          )));
         });
   }
 }

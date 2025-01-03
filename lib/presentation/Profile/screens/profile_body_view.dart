@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:movieapp/core/widgets/custom_button.dart';
 import 'package:movieapp/core/widgets/custom_fading.dart';
+import 'package:movieapp/presentation/Home/screens/widgets/Custom_movie_image.dart';
 import 'package:movieapp/presentation/Profile/screens/widgets/custom_item.dart';
+import 'package:movieapp/presentation/moviedetails/manager/cubit/moviedetails_cubit.dart';
+import 'package:movieapp/presentation/moviedetails/screens/movie_details.dart';
 
 class ProfileBodyView extends StatefulWidget {
   const ProfileBodyView({super.key});
@@ -100,14 +105,13 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
                       child: CustomButton(
                         isIcon: true,
                         width: MediaQuery.of(context).size.width * 0.40,
                         icon: Icons.list,
-                        text: "My Favorite Movies",
+                        text: "Favorite Movies",
                         color: currentTap == 0
                             ? Theme.of(context).colorScheme.secondary
                             : Theme.of(context).colorScheme.surface,
@@ -133,18 +137,53 @@ class _ProfileBodyViewState extends State<ProfileBodyView> {
                 ),
               ),
             ),
-            SliverGrid.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 5,
-                    mainAxisSpacing: 5,
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.7),
-                itemCount: 10,
-                itemBuilder: (context, index) => CustomFadingWidget(
-                      child: Container(
-                        color: Colors.grey,
-                      ),
-                    )),
+            BlocBuilder<MoviedetailsCubit, MoviedetailsState>(
+              bloc: Get.find<MoviedetailsCubit>(),
+              builder: (context, state) {
+                if (state is MoviedetailsLoadded) {
+                  return SliverGrid.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7),
+                      itemCount: state.movies.length,
+                      itemBuilder: (context, index) => CustomMovieImage(
+                            ontap: () {
+                              Get.to(() => MovieDetails(
+                                    currentIndex: index,
+                                    movies: state.movies,
+                                  ));
+                            },
+                            image: state.movies[index].orginalImage,
+                            rating: state.movies[index].rating,
+                          ));
+                }
+                if (state is MoviedetailsLoading) {
+                  return SliverGrid.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisSpacing: 5,
+                          mainAxisSpacing: 5,
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.7),
+                      itemCount: 10,
+                      itemBuilder: (context, index) => CustomFadingWidget(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              height: 250,
+                              width: 200,
+                              color: Theme.of(context).colorScheme.surface,
+                            ),
+                          ));
+                }
+                return SliverToBoxAdapter(
+                    child: SizedBox(
+                  child: Image.asset('assets/images/Empty.png'),
+                ));
+              },
+            ),
           ],
         ),
       ),

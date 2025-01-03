@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/core/widgets/get_snacbars.dart';
+import 'package:movieapp/domain/Entities/movie_entity.dart';
 import 'package:movieapp/presentation/Home/manager/cubit/genric_cubit.dart';
 import 'package:movieapp/presentation/Home/screens/widgets/Genres/genres_loaded.dart';
 import 'package:movieapp/presentation/Home/screens/widgets/Genres/genres_loading.dart';
 
 class GenreModelView extends StatelessWidget {
-  const GenreModelView({super.key});
-
+  const GenreModelView({super.key, });
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<GenricCubit, GenricState>(

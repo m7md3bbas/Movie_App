@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:movieapp/core/widgets/get_snacbars.dart';
+import 'package:movieapp/domain/Entities/movie_entity.dart';
 import 'package:movieapp/presentation/Search/manager/cubit/search_cubit.dart';
 import 'package:movieapp/presentation/Search/screens/widgets/search_form_widget.dart';
 import 'package:movieapp/presentation/Search/screens/widgets/search_loaded_widget.dart';

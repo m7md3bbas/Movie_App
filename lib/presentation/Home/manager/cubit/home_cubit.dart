@@ -20,6 +20,4 @@ class HomeCubit extends Cubit<HomeState> {
         (r) => emit(moviesLoaded(r)));
   }
 
-
- 
 }

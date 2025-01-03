@@ -14,7 +14,6 @@ final class homeError extends HomeState {
   homeError({required this.message});
 }
 
-
 final class TopRatedMoviesLoading extends HomeState {}
 
 final class moviesLoaded extends HomeState {
@@ -31,4 +30,3 @@ final class TopRatedMoviesError extends HomeState {
   final String error;
   TopRatedMoviesError({required this.error});
 }
-

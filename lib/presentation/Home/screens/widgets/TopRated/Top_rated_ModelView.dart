@@ -10,11 +10,10 @@ import 'package:movieapp/presentation/Home/screens/widgets/TopRated/top_rated_lo
 class TopRatedModelview extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onIndexChanged;
-
   const TopRatedModelview({
     super.key,
     required this.currentIndex,
-    required this.onIndexChanged,
+    required this.onIndexChanged, 
   });
 
   @override

@@ -43,7 +43,8 @@ class CustomButton extends StatelessWidget {
             ),
             Text(
               text,
-              style: TextStyle(color: Colors.amberAccent, fontSize: 16),
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.amberAccent, fontSize: 15),
             )
           ],
         ),

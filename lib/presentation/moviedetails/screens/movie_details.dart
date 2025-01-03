@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movieapp/core/widgets/custom_button.dart';
 import 'package:movieapp/domain/Entities/movie_entity.dart';
 import 'package:movieapp/presentation/Home/screens/widgets/Custom_movie_image.dart';
-import 'package:movieapp/presentation/Home/screens/widgets/MovieDetails/Title_widget.dart';
-import 'package:movieapp/presentation/Home/screens/widgets/MovieDetails/back_button.dart';
-import 'package:movieapp/presentation/Home/screens/widgets/MovieDetails/book_mark_button.dart';
-import 'package:movieapp/presentation/Home/screens/widgets/MovieDetails/play_button.dart';
-import 'package:movieapp/presentation/Home/screens/widgets/MovieDetails/year_widget.dart';
+import 'package:movieapp/presentation/moviedetails/screens/widgets/Title_widget.dart';
+import 'package:movieapp/presentation/moviedetails/screens/widgets/back_button.dart';
+import 'package:movieapp/presentation/moviedetails/screens/widgets/book_mark_button.dart';
+import 'package:movieapp/presentation/moviedetails/screens/widgets/play_button.dart';
+import 'package:movieapp/presentation/moviedetails/screens/widgets/year_widget.dart';
+
 class MovieDetails extends StatefulWidget {
   const MovieDetails({
     super.key,
@@ -25,7 +25,6 @@ class MovieDetails extends StatefulWidget {
 class _MovieDetailsState extends State<MovieDetails> {
   late List<MovieEntity> similarMovie;
   late List<MovieEntity> mainMovie;
-  final ValueNotifier<bool> currentTap = ValueNotifier(false);
 
   @override
   void initState() {
@@ -33,21 +32,30 @@ class _MovieDetailsState extends State<MovieDetails> {
     _filterMovies();
   }
 
+  List<MovieEntity> filterMovies(
+      List<MovieEntity> movies, bool Function(MovieEntity movie) filterFn) {
+    return movies.where(filterFn).toList();
+  }
+
+  List<MovieEntity> getSimilarMovies({required Set<dynamic> targetGenres}) {
+    return widget.movies
+        .where((movie) =>
+            movie.genres.any((genre) => targetGenres.contains(genre)))
+        .toList();
+  }
+
   void _filterMovies() {
     final Set<dynamic> targetGenres =
         widget.movies[widget.currentIndex].genres.toSet();
 
-    final List<MovieEntity> movieList = widget.movies
-        .where((movie) =>
-            movie.genres.any((genre) => targetGenres.contains(genre)))
-        .toList();
+    final List<MovieEntity> similarMovies =
+        getSimilarMovies(targetGenres: targetGenres);
 
-    similarMovie = movieList
-        .where((movie) => movie.id != widget.movies[widget.currentIndex].id)
-        .toList();
-    mainMovie = movieList
-        .where((movie) => movie.id == widget.movies[widget.currentIndex].id)
-        .toList();
+    similarMovie = filterMovies(similarMovies,
+        (movie) => movie.id != widget.movies[widget.currentIndex].id);
+
+    mainMovie = filterMovies(similarMovies,
+        (movie) => movie.id == widget.movies[widget.currentIndex].id);
   }
 
   @override
@@ -97,7 +105,9 @@ class _MovieDetailsState extends State<MovieDetails> {
                       PlayButtonWidget(
                           screenHeight: screenHeight, screenWidth: screenWidth),
                       BookMarkButton(
-                          currentTap: currentTap, screenHeight: screenHeight),
+                          currentIndex: widget.currentIndex,
+                          movies: widget.movies,
+                          screenHeight: screenHeight),
                       TitleTextWidget(
                           widget: widget,
                           context: context,
